@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Virtual Stock Trading - Competitions</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .competition-page {
+
+            width: 94%;
+
+            max-width: 1500px;
+
+            margin: 30px auto;
+        }
+
+
+        .competition-header {
+
+            margin-bottom: 30px;
+        }
+
+
+        .competition-header h1 {
+
+            margin-bottom: 8px;
+        }
+
+
+        .competition-header p {
+
+            color: rgb(140, 155, 180);
+
+            font-size: 14px;
+        }
+
+
+        /* ================= GAME CARDS ================= */
+
+        .game-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .game-card {
+
+            background:
+                rgb(25, 36, 57);
+
+            border:
+                1px solid rgb(50, 67, 94);
+
+            border-radius: 10px;
+
+            padding: 22px;
+
+            transition: 0.3s;
+        }
+
+
+        .game-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgb(55, 110, 220);
+        }
+
+
+        .game-card h3 {
+
+            margin-top: 0;
+
+            margin-bottom: 10px;
+        }
+
+
+        .game-card p {
+
+            color:
+                rgb(145, 160, 185);
+
+            line-height: 1.6;
+
+            font-size: 13px;
+        }
+
+
+        .game-tag {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 15px;
+
+            background:
+                rgb(35, 55, 85);
+
+            color:
+                rgb(100, 160, 255);
+
+            font-size: 11px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .play-button {
+
+            width: 100%;
+
+            margin-top: 12px;
+
+            padding: 11px;
+
+            background:
+                rgb(37, 99, 235);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+
+        .play-button:hover {
+
+            background:
+                rgb(25, 75, 180);
+        }
+
+
+        /* ================= GAME AREA ================= */
+
+        .game-area {
+
+            background:
+                rgb(25, 36, 57);
+
+            border:
+                1px solid rgb(50, 67, 94);
+
+            border-radius: 10px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+
+            min-height: 350px;
+        }
+
+
+        .game-area h2 {
+
+            margin-top: 0;
+        }
+
+
+        .game-info {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+
+            color:
+                rgb(150, 165, 190);
+        }
+
+
+        .game-info strong {
+
+            color: white;
+        }
+
+
+        /* ================= TIMER ================= */
+
+        .game-top-bar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            padding: 12px 15px;
+
+            background:
+                rgb(12, 21, 37);
+
+            border-radius: 8px;
+
+            border:
+                1px solid rgb(50, 67, 94);
+        }
+
+
+        .timer {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color:
+                rgb(20, 190, 100);
+        }
+
+
+        .timer.warning {
+
+            color:
+                rgb(240, 65, 75);
+        }
+
+
+        /* ================= LIFELINES ================= */
+
+        .lifelines {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-top: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .lifeline-button {
+
+            padding: 9px 15px;
+
+            background:
+                rgb(35, 55, 85);
+
+            color: white;
+
+            border:
+                1px solid rgb(70, 100, 145);
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+
+        .lifeline-button:hover {
+
+            background:
+                rgb(37, 99, 235);
+        }
+
+
+        .lifeline-button:disabled {
+
+            opacity: 0.35;
+
+            cursor: not-allowed;
+        }
+
+
+        .hint-message {
+
+            min-height: 25px;
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            color:
+                rgb(255, 205, 80);
+
+            font-size: 14px;
+        }
+
+
+        /* ================= STOCK ZIP ================= */
+
+        .zip-grid {
+
+            width: 320px;
+
+            margin: 20px auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 8px;
+        }
+
+
+        .zip-cell {
+
+            height: 65px;
+
+            background:
+                rgb(12, 21, 37);
+
+            border:
+                1px solid rgb(65, 85, 115);
+
+            border-radius: 7px;
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .zip-cell:hover {
+
+            background:
+                rgb(37, 99, 235);
+        }
+
+
+        .zip-cell.correct {
+
+            background:
+                rgb(20, 160, 85);
+        }
+
+
+        .zip-cell.wrong {
+
+            background:
+                rgb(210, 50, 60);
+        }
+
+
+        .zip-cell.hint {
+
+            background:
+                rgb(230, 160, 40);
+
+            color: white;
+        }
+
+
+        /* ================= QUESTIONS ================= */
+
+        .question-box {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            text-align: center;
+        }
+
+
+        .question {
+
+            font-size: 22px;
+
+            line-height: 1.5;
+
+            margin-bottom: 25px;
+        }
+
+
+        .answer-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .answer-buttons button {
+
+            padding: 13px 25px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+
+        .bull-button {
+
+            background:
+                rgb(20, 170, 85);
+        }
+
+
+        .bear-button {
+
+            background:
+                rgb(210, 50, 60);
+        }
+
+
+        /* ================= MEMORY GAME ================= */
+
+        .match-grid {
+
+            max-width: 500px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+        }
+
+
+        .match-card {
+
+            height: 80px;
+
+            background:
+                rgb(12, 21, 37);
+
+            border:
+                1px solid rgb(60, 80, 110);
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+
+            color: transparent;
+        }
+
+
+        .match-card.show {
+
+            color: white;
+
+            background:
+                rgb(37, 99, 235);
+        }
+
+
+        .match-card.matched {
+
+            color: white;
+
+            background:
+                rgb(20, 160, 85);
+
+            cursor: default;
+        }
+
+
+        /* ================= LEADERBOARD ================= */
+
+        .leaderboard {
+
+            background:
+                rgb(25, 36, 57);
+
+            border:
+                1px solid rgb(50, 67, 94);
+
+            border-radius: 10px;
+
+            padding: 25px;
+        }
+
+
+        .leaderboard h2 {
+
+            margin-top: 0;
+        }
+
+
+        .leaderboard table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        .leaderboard th,
+        .leaderboard td {
+
+            padding: 13px;
+
+            text-align: left;
+
+            border-bottom:
+                1px solid rgb(45, 60, 82);
+        }
+
+
+        .leaderboard th {
+
+            color:
+                rgb(145, 175, 220);
+
+            font-size: 12px;
+        }
+
+
+        .leaderboard td {
+
+            font-size: 13px;
+        }
+
+
+        .score-message {
+
+            text-align: center;
+
+            min-height: 25px;
+
+            margin-top: 15px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .game-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .game-container {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .zip-grid {
+
+                width: 280px;
+            }
+
+
+            .match-grid {
+
+                width: 100%;
+            }
+
+
+            .question {
+
+                font-size: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+   <div class="logo">
+    <img src="logo.png" alt="Virtual Stock Trading Logo">
+</div>
+
+
+    <a href="dashboard.html">
+        Dashboard
+    </a>
+
+
+    <a href="portfolio.html">
+        Portfolio
+    </a>
+
+
+    <a href="tutorials.html">
+        Tutorials
+    </a>
+
+
+    <a href="competitions.html"
+       class="active">
+
+        Competitions
+
+    </a>
+
+
+    <button
+        class="logout"
+        onclick="logout()">
+
+        Logout
+
+    </button>
+
+</div>
+
+
+<!-- ================= PAGE ================= -->
+
+<div class="competition-page">
+
+
+    <div class="competition-header">
+
+        <h1>
+            Trading Games & Competitions
+        </h1>
+
+        <p>
+            Test your market knowledge, logic and trading skills.
+        </p>
+
+    </div>
+
+
+    <!-- ================= GAME CARDS ================= -->
+
+    <div class="game-container">
+
+
+        <div class="game-card">
+
+            <span class="game-tag">
+                DAILY PUZZLE
+            </span>
+
+
+            <h3>
+                📊 Stock Zip
+            </h3>
+
+
+            <p>
+                Connect the numbers in the correct
+                order before the timer ends.
+            </p>
+
+
+            <p>
+                Best Score:
+                <strong id="zipBest">
+                    0
+                </strong>
+            </p>
+
+
+            <button
+                class="play-button"
+                onclick="startZipGame()">
+
+                Play Stock Zip
+
+            </button>
+
+        </div>
+
+
+        <div class="game-card">
+
+            <span class="game-tag">
+                MARKET QUIZ
+            </span>
+
+
+            <h3>
+                📈 Bull or Bear
+            </h3>
+
+
+            <p>
+                Read the market situation and decide
+                whether the sentiment is Bull or Bear.
+            </p>
+
+
+            <p>
+                Score:
+                <strong id="bullScore">
+                    0
+                </strong>
+            </p>
+
+
+            <button
+                class="play-button"
+                onclick="startBullBear()">
+
+                Play Bull or Bear
+
+            </button>
+
+        </div>
+
+
+        <div class="game-card">
+
+            <span class="game-tag">
+                MEMORY
+            </span>
+
+
+            <h3>
+                🧠 Market Match
+            </h3>
+
+
+            <p>
+                Match stock symbols with their
+                company names.
+            </p>
+
+
+            <p>
+                Score:
+                <strong id="matchScore">
+                    0
+                </strong>
+            </p>
+
+
+            <button
+                class="play-button"
+                onclick="startMatchGame()">
+
+                Play Market Match
+
+            </button>
+
+        </div>
+
+
+        <div class="game-card">
+
+            <span class="game-tag">
+                STRATEGY
+            </span>
+
+
+            <h3>
+                💼 Portfolio Challenge
+            </h3>
+
+
+            <p>
+                Make a portfolio decision and test
+                your investment knowledge.
+            </p>
+
+
+            <p>
+                Difficulty:
+                <strong>
+                    Medium
+                </strong>
+            </p>
+
+
+            <button
+                class="play-button"
+                onclick="startPortfolioChallenge()">
+
+                Start Challenge
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= GAME AREA ================= -->
+
+    <div
+        class="game-area"
+        id="gameArea">
+
+        <h2>
+            Choose a game above
+        </h2>
+
+
+        <p>
+            Your game, timer and lifelines will appear here.
+        </p>
+
+    </div>
+
+
+    <!-- ================= LEADERBOARD ================= -->
+
+    <div class="leaderboard">
+
+        <h2>
+            🏆 Daily Leaderboard
+        </h2>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Rank
+                    </th>
+
+                    <th>
+                        Trader
+                    </th>
+
+                    <th>
+                        Game
+                    </th>
+
+                    <th>
+                        Score
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>MarketMaster</td>
+
+                    <td>Stock Zip</td>
+
+                    <td>16</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>TradingPro</td>
+
+                    <td>Market Match</td>
+
+                    <td>120</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>InvestorX</td>
+
+                    <td>Bull or Bear</td>
+
+                    <td>95</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>4</td>
+
+                    <td>SmartTrader</td>
+
+                    <td>Portfolio Challenge</td>
+
+                    <td>90</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+/* =====================================================
+   GLOBAL GAME VARIABLES
+===================================================== */
+
+var gameTimer = null;
+
+var timeLeft = 60;
+
+var currentGame = "";
+
+var lifelineHint = true;
+
+var lifelineSkip = true;
+
+var lifelineTime = true;
+
+
+/* =====================================================
+   STOCK ZIP VARIABLES
+===================================================== */
+
+var zipNumbers = [];
+
+var zipNext = 1;
+
+var zipScore = 0;
+
+
+/* =====================================================
+   BULL OR BEAR VARIABLES
+===================================================== */
+
+var bullIndex = 0;
+
+var bullScoreValue = 0;
+
+
+/* =====================================================
+   MARKET MATCH VARIABLES
+===================================================== */
+
+var matchValues = [
+
+    "AAPL",
+    "Apple",
+    "TSLA",
+    "Tesla",
+    "AMZN",
+    "Amazon",
+    "MSFT",
+    "Microsoft"
+
+];
+
+
+var firstCard = null;
+
+var secondCard = null;
+
+var matchLocked = false;
+
+var matchPairs = 0;
+
+var matchScoreValue = 0;
+
+
+/* =====================================================
+   BULL OR BEAR QUESTIONS
+===================================================== */
+
+var bullQuestions = [
+
+    {
+        question:
+            "A company reports strong profits and rising sales. What is the likely sentiment?",
+        answer:
+            "Bull"
+    },
+
+
+    {
+        question:
+            "A company reports falling revenue and weak demand. What is the likely sentiment?",
+        answer:
+            "Bear"
+    },
+
+
+    {
+        question:
+            "A stock breaks above an important resistance level with strong buying interest.",
+        answer:
+            "Bull"
+    },
+
+
+    {
+        question:
+            "A company announces large losses and declining customers.",
+        answer:
+            "Bear"
+    },
+
+
+    {
+        question:
+            "Investors become confident and buying activity increases.",
+        answer:
+            "Bull"
+    }
+
+];
+
+
+/* =====================================================
+   START ANY GAME
+===================================================== */
+
+function startGame(gameName) {
+
+    clearInterval(gameTimer);
+
+
+    currentGame =
+        gameName;
+
+
+    timeLeft =
+        60;
+
+
+    lifelineHint =
+        true;
+
+
+    lifelineSkip =
+        true;
+
+
+    lifelineTime =
+        true;
+
+
+    startGameTimer();
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function startGameTimer() {
+
+    clearInterval(gameTimer);
+
+
+    updateTimerDisplay();
+
+
+    gameTimer =
+        setInterval(
+
+            function() {
+
+                timeLeft--;
+
+
+                updateTimerDisplay();
+
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        gameTimer
+                    );
+
+
+                    timeIsUp();
+
+                }
+
+            },
+
+            1000
+        );
+}
+
+
+/* =====================================================
+   TIMER DISPLAY
+===================================================== */
+
+function updateTimerDisplay() {
+
+    var timer =
+        document.getElementById(
+            "gameTimer"
+        );
+
+
+    if (!timer) {
+
+        return;
+    }
+
+
+    timer.innerHTML =
+        "⏱ " +
+        timeLeft +
+        "s";
+
+
+    if (
+        timeLeft <= 10
+    ) {
+
+        timer.classList.add(
+            "warning"
+        );
+
+    }
+
+    else {
+
+        timer.classList.remove(
+            "warning"
+        );
+    }
+}
+
+
+/* =====================================================
+   TIME UP
+===================================================== */
+
+function timeIsUp() {
+
+    clearInterval(
+        gameTimer
+    );
+
+
+    var game =
+        document.getElementById(
+            "gameArea"
+        );
+
+
+    var score = 0;
+
+
+    if (
+        currentGame === "zip"
+    ) {
+
+        score =
+            zipScore;
+
+    }
+
+    else if (
+        currentGame === "bullbear"
+    ) {
+
+        score =
+            bullScoreValue;
+
+    }
+
+    else if (
+        currentGame === "match"
+    ) {
+
+        score =
+            matchScoreValue;
+
+    }
+
+
+    game.innerHTML =
+
+        "<div class='question-box'>" +
+
+        "<h2>⏰ Time's Up!</h2>" +
+
+        "<p class='question'>" +
+
+        "Your final score is " +
+
+        score +
+
+        "</p>" +
+
+        "<button " +
+
+        "class='play-button' " +
+
+        "onclick='restartCurrentGame()'>" +
+
+        "Play Again" +
+
+        "</button>" +
+
+        "</div>";
+}
+
+
+/* =====================================================
+   RESTART CURRENT GAME
+===================================================== */
+
+function restartCurrentGame() {
+
+    if (
+        currentGame === "zip"
+    ) {
+
+        startZipGame();
+
+    }
+
+    else if (
+        currentGame === "bullbear"
+    ) {
+
+        startBullBear();
+
+    }
+
+    else if (
+        currentGame === "match"
+    ) {
+
+        startMatchGame();
+
+    }
+
+    else {
+
+        startPortfolioChallenge();
+    }
+}
+
+
+/* =====================================================
+   LIFELINES HTML
+===================================================== */
+
+function showLifelines() {
+
+    return
+
+        "<div class='lifelines'>" +
+
+        "<button " +
+
+        "class='lifeline-button' " +
+
+        "id='hintLife' " +
+
+        "onclick='useHint()'>" +
+
+        "💡 Hint" +
+
+        "</button>" +
+
+
+        "<button " +
+
+        "class='lifeline-button' " +
+
+        "id='skipLife' " +
+
+        "onclick='useSkip()'>" +
+
+        "⏭ Skip" +
+
+        "</button>" +
+
+
+        "<button " +
+
+        "class='lifeline-button' " +
+
+        "id='timeLife' " +
+
+        "onclick='useExtraTime()'>" +
+
+        "⏱ +10 Sec" +
+
+        "</button>" +
+
+        "</div>" +
+
+
+        "<p " +
+
+        "id='hintMessage' " +
+
+        "class='hint-message'>" +
+
+        "</p>";
+}
+
+
+/* =====================================================
+   HINT LIFELINE
+===================================================== */
+
+function useHint() {
+
+    if (
+        !lifelineHint
+    ) {
+
+        return;
+    }
+
+
+    lifelineHint =
+        false;
+
+
+    var button =
+        document.getElementById(
+            "hintLife"
+        );
+
+
+    if (button) {
+
+        button.disabled =
+            true;
+    }
+
+
+    var message =
+        document.getElementById(
+            "hintMessage"
+        );
+
+
+    if (!message) {
+
+        return;
+    }
+
+
+    if (
+        currentGame === "bullbear"
+    ) {
+
+        if (
+            bullIndex <
+            bullQuestions.length
+        ) {
+
+            message.innerHTML =
+                "💡 Hint: Think about whether the situation shows strong buying or selling pressure.";
+        }
+
+    }
+
+
+    else if (
+        currentGame === "zip"
+    ) {
+
+        message.innerHTML =
+            "💡 Hint: Find the next number in the sequence.";
+
+    }
+
+
+    else if (
+        currentGame === "match"
+    ) {
+
+        message.innerHTML =
+            "💡 Hint: AAPL matches Apple, TSLA matches Tesla.";
+
+    }
+
+
+    else {
+
+        message.innerHTML =
+            "💡 Hint: Diversification means spreading money across different investments.";
+    }
+}
+
+
+/* =====================================================
+   SKIP LIFELINE
+===================================================== */
+
+function useSkip() {
+
+    if (
+        !lifelineSkip
+    ) {
+
+        return;
+    }
+
+
+    lifelineSkip =
+        false;
+
+
+    var button =
+        document.getElementById(
+            "skipLife"
+        );
+
+
+    if (button) {
+
+        button.disabled =
+            true;
+    }
+
+
+    /* Bull or Bear */
+
+    if (
+        currentGame === "bullbear"
+    ) {
+
+        if (
+            bullIndex <
+            bullQuestions.length
+        ) {
+
+            bullIndex++;
+
+
+            showBullQuestion();
+        }
+
+
+        return;
+    }
+
+
+    /* Stock Zip */
+
+    if (
+        currentGame === "zip"
+    ) {
+
+        for (
+            var i = 0;
+            i < 16;
+            i++
+        ) {
+
+            var buttons =
+                document.getElementsByClassName(
+                    "zip-cell"
+                );
+
+
+            for (
+                var j = 0;
+                j < buttons.length;
+                j++
+            ) {
+
+                if (
+                    Number(
+                        buttons[j].innerHTML
+                    ) === zipNext
+                ) {
+
+                    buttons[j].classList.add(
+                        "hint"
+                    );
+
+                }
+            }
+        }
+
+
+        return;
+    }
+
+
+    /* Market Match */
+
+    if (
+        currentGame === "match"
+    ) {
+
+        message =
+            document.getElementById(
+                "hintMessage"
+            );
+
+
+        if (message) {
+
+            message.innerHTML =
+                "⏭ One pair has been skipped. Continue matching the remaining cards.";
+        }
+
+
+        return;
+    }
+
+
+    /* Portfolio */
+
+    var portfolioMessage =
+        document.getElementById(
+            "portfolioGameMessage"
+        );
+
+
+    if (portfolioMessage) {
+
+        portfolioMessage.innerHTML =
+            "⏭ Challenge skipped.";
+
+        portfolioMessage.style.color =
+            "rgb(255,205,80)";
+    }
+}
+
+
+/* =====================================================
+   EXTRA TIME LIFELINE
+===================================================== */
+
+function useExtraTime() {
+
+    if (
+        !lifelineTime
+    ) {
+
+        return;
+    }
+
+
+    lifelineTime =
+        false;
+
+
+    var button =
+        document.getElementById(
+            "timeLife"
+        );
+
+
+    if (button) {
+
+        button.disabled =
+            true;
+    }
+
+
+    timeLeft +=
+        10;
+
+
+    updateTimerDisplay();
+}
+
+
+/* =====================================================
+   STOCK ZIP
+===================================================== */
+
+function startZipGame() {
+
+    startGame(
+        "zip"
+    );
+
+
+    var game =
+        document.getElementById(
+            "gameArea"
+        );
+
+
+    zipNumbers = [];
+
+
+    for (
+        var i = 1;
+        i <= 16;
+        i++
+    ) {
+
+        zipNumbers.push(
+            i
+        );
+    }
+
+
+    zipNumbers.sort(
+        function() {
+
+            return Math.random() - 0.5;
+
+        }
+    );
+
+
+    zipNext =
+        1;
+
+
+    zipScore =
+        0;
+
+
+    var html =
+
+        "<div class='game-top-bar'>" +
+
+        "<span>📊 Stock Zip</span>" +
+
+        "<strong " +
+
+        "id='gameTimer' " +
+
+        "class='timer'>" +
+
+        "60s" +
+
+        "</strong>" +
+
+        "</div>" +
+
+
+        "<div class='game-info'>" +
+
+        "<span>Next Number: " +
+
+        "<strong id='zipNext'>" +
+
+        zipNext +
+
+        "</strong></span>" +
+
+
+        "<span>Score: " +
+
+        "<strong id='zipGameScore'>" +
+
+        zipScore +
+
+        "</strong></span>" +
+
+        "</div>" +
+
+
+        "<div class='zip-grid'>";
+
+
+    for (
+        var j = 0;
+        j < zipNumbers.length;
+        j++
+    ) {
+
+        html +=
+
+            "<button " +
+
+            "class='zip-cell' " +
+
+            "onclick='zipClick(" +
+
+            zipNumbers[j] +
+
+            ", this)'>" +
+
+            zipNumbers[j] +
+
+            "</button>";
+    }
+
+
+    html +=
+
+        "</div>" +
+
+        showLifelines() +
+
+        "<p " +
+
+        "id='zipMessage' " +
+
+        "class='score-message'>" +
+
+        "</p>";
+
+
+    game.innerHTML =
+        html;
+
+
+    updateTimerDisplay();
+}
+
+
+function zipClick(
+    number,
+    element
+) {
+
+    var message =
+        document.getElementById(
+            "zipMessage"
+        );
+
+
+    if (
+        number === zipNext
+    ) {
+
+        element.classList.add(
+            "correct"
+        );
+
+
+        element.disabled =
+            true;
+
+
+        zipScore++;
+
+
+        zipNext++;
+
+
+        document.getElementById(
+            "zipNext"
+        ).innerHTML =
+            zipNext;
+
+
+        document.getElementById(
+            "zipGameScore"
+        ).innerHTML =
+            zipScore;
+
+
+        if (
+            zipNext > 16
+        ) {
+
+            clearInterval(
+                gameTimer
+            );
+
+
+            message.innerHTML =
+                "🎉 Completed! Your score is " +
+                zipScore;
+
+
+            var best =
+                Number(
+                    localStorage.getItem(
+                        "zipBest"
+                    )
+                ) || 0;
+
+
+            if (
+                zipScore > best
+            ) {
+
+                localStorage.setItem(
+                    "zipBest",
+                    zipScore
+                );
+
+
+                document.getElementById(
+                    "zipBest"
+                ).innerHTML =
+                    zipScore;
+            }
+
+        }
+
+    }
+
+    else {
+
+        element.classList.add(
+            "wrong"
+        );
+
+
+        setTimeout(
+            function() {
+
+                element.classList.remove(
+                    "wrong"
+                );
+
+            },
+            400
+        );
+    }
+}
+
+
+/* =====================================================
+   BULL OR BEAR
+===================================================== */
+
+function startBullBear() {
+
+    startGame(
+        "bullbear"
+    );
+
+
+    bullIndex =
+        0;
+
+
+    bullScoreValue =
+        0;
+
+
+    document.getElementById(
+        "bullScore"
+    ).innerHTML =
+        "0";
+
+
+    showBullQuestion();
+}
+
+
+function showBullQuestion() {
+
+    var game =
+        document.getElementById(
+            "gameArea"
+        );
+
+
+    if (
+        bullIndex >=
+        bullQuestions.length
+    ) {
+
+        clearInterval(
+            gameTimer
+        );
+
+
+        game.innerHTML =
+
+            "<div class='question-box'>" +
+
+            "<h2>📈 Bull or Bear</h2>" +
+
+            "<p class='question'>" +
+
+            "🎉 Game Complete!" +
+
+            "<br><br>" +
+
+            "Final Score: " +
+
+            bullScoreValue +
+
+            " / " +
+
+            bullQuestions.length +
+
+            "</p>" +
+
+            "<button class='play-button' " +
+
+            "onclick='startBullBear()'>" +
+
+            "Play Again" +
+
+            "</button>" +
+
+            "</div>";
+
+
+        return;
+    }
+
+
+    var question =
+        bullQuestions[
+            bullIndex
+        ];
+
+
+    game.innerHTML =
+
+        "<div class='game-top-bar'>" +
+
+        "<span>" +
+
+        "Question " +
+
+        (bullIndex + 1) +
+
+        " / " +
+
+        bullQuestions.length +
+
+        "</span>" +
+
+        "<strong " +
+
+        "id='gameTimer' " +
+
+        "class='timer'>" +
+
+        timeLeft +
+
+        "s" +
+
+        "</strong>" +
+
+        "</div>" +
+
+
+        "<div class='question-box'>" +
+
+        "<h2>📈 Bull or Bear</h2>" +
+
+        "<p class='question'>" +
+
+        question.question +
+
+        "</p>" +
+
+
+        "<div class='answer-buttons'>" +
+
+        "<button " +
+
+        "class='bull-button' " +
+
+        "onclick=\"answerBullBear('Bull')\">" +
+
+        "🐂 Bull" +
+
+        "</button>" +
+
+
+        "<button " +
+
+        "class='bear-button' " +
+
+        "onclick=\"answerBullBear('Bear')\">" +
+
+        "🐻 Bear" +
+
+        "</button>" +
+
+        "</div>" +
+
+
+        showLifelines() +
+
+        "</div>";
+
+
+    updateTimerDisplay();
+}
+
+
+function answerBullBear(
+    answer
+) {
+
+    if (
+        answer ===
+        bullQuestions[
+            bullIndex
+        ].answer
+    ) {
+
+        bullScoreValue++;
+    }
+
+
+    bullIndex++;
+
+
+    document.getElementById(
+        "bullScore"
+    ).innerHTML =
+        bullScoreValue;
+
+
+    showBullQuestion();
+}
+
+
+/* =====================================================
+   MARKET MATCH
+===================================================== */
+
+function startMatchGame() {
+
+    startGame(
+        "match"
+    );
+
+
+    var values =
+        matchValues.slice();
+
+
+    values.sort(
+        function() {
+
+            return Math.random() - 0.5;
+
+        }
+    );
+
+
+    firstCard =
+        null;
+
+
+    secondCard =
+        null;
+
+
+    matchLocked =
+        false;
+
+
+    matchPairs =
+        0;
+
+
+    matchScoreValue =
+        0;
+
+
+    document.getElementById(
+        "matchScore"
+    ).innerHTML =
+        "0";
+
+
+    var game =
+        document.getElementById(
+            "gameArea"
+        );
+
+
+    var html =
+
+        "<div class='game-top-bar'>" +
+
+        "<span>🧠 Market Match</span>" +
+
+        "<strong " +
+
+        "id='gameTimer' " +
+
+        "class='timer'>" +
+
+        "60s" +
+
+        "</strong>" +
+
+        "</div>" +
+
+
+        "<p class='score-message'>" +
+
+        "Match each stock symbol with its company." +
+
+        "</p>" +
+
+
+        "<div class='match-grid'>";
+
+
+    for (
+        var i = 0;
+        i < values.length;
+        i++
+    ) {
+
+        html +=
+
+            "<button " +
+
+            "class='match-card' " +
+
+            "data-value='" +
+
+            values[i] +
+
+            "' " +
+
+            "onclick='matchClick(this)'>" +
+
+            values[i] +
+
+            "</button>";
+    }
+
+
+    html +=
+
+        "</div>" +
+
+
+        showLifelines() +
+
+
+        "<p " +
+
+        "id='matchMessage' " +
+
+        "class='score-message'>" +
+
+        "</p>";
+
+
+    game.innerHTML =
+        html;
+
+
+    updateTimerDisplay();
+}
+
+
+function matchClick(
+    card
+) {
+
+    if (
+        matchLocked ||
+        card.classList.contains(
+            "matched"
+        ) ||
+        card === firstCard
+    ) {
+
+        return;
+    }
+
+
+    card.classList.add(
+        "show"
+    );
+
+
+    if (
+        firstCard === null
+    ) {
+
+        firstCard =
+            card;
+
+
+        return;
+    }
+
+
+    secondCard =
+        card;
+
+
+    matchLocked =
+        true;
+
+
+    var first =
+        firstCard.dataset.value;
+
+
+    var second =
+        secondCard.dataset.value;
+
+
+    var matched =
+
+        (
+            first === "AAPL" &&
+            second === "Apple"
+        )
+        ||
+
+        (
+            first === "Apple" &&
+            second === "AAPL"
+        )
+        ||
+
+        (
+            first === "TSLA" &&
+            second === "Tesla"
+        )
+        ||
+
+        (
+            first === "Tesla" &&
+            second === "TSLA"
+        )
+        ||
+
+        (
+            first === "AMZN" &&
+            second === "Amazon"
+        )
+        ||
+
+        (
+            first === "Amazon" &&
+            second === "AMZN"
+        )
+        ||
+
+        (
+            first === "MSFT" &&
+            second === "Microsoft"
+        )
+        ||
+
+        (
+            first === "Microsoft" &&
+            second === "MSFT"
+        );
+
+
+    if (
+        matched
+    ) {
+
+        firstCard.classList.add(
+            "matched"
+        );
+
+
+        secondCard.classList.add(
+            "matched"
+        );
+
+
+        matchPairs++;
+
+
+        matchScoreValue +=
+            10;
+
+
+        document.getElementById(
+            "matchScore"
+        ).innerHTML =
+            matchScoreValue;
+
+
+        firstCard =
+            null;
+
+
+        secondCard =
+            null;
+
+
+        matchLocked =
+            false;
+
+
+        if (
+            matchPairs === 4
+        ) {
+
+            clearInterval(
+                gameTimer
+            );
+
+
+            document.getElementById(
+                "matchMessage"
+            ).innerHTML =
+                "🎉 All stocks matched!";
+        }
+
+    }
+
+    else {
+
+        setTimeout(
+            function() {
+
+                firstCard.classList.remove(
+                    "show"
+                );
+
+
+                secondCard.classList.remove(
+                    "show"
+                );
+
+
+                firstCard =
+                    null;
+
+
+                secondCard =
+                    null;
+
+
+                matchLocked =
+                    false;
+
+            },
+            800
+        );
+    }
+}
+
+
+/* =====================================================
+   PORTFOLIO CHALLENGE
+===================================================== */
+
+function startPortfolioChallenge() {
+
+    startGame(
+        "portfolio"
+    );
+
+
+    var game =
+        document.getElementById(
+            "gameArea"
+        );
+
+
+    game.innerHTML =
+
+        "<div class='game-top-bar'>" +
+
+        "<span>💼 Portfolio Challenge</span>" +
+
+        "<strong " +
+
+        "id='gameTimer' " +
+
+        "class='timer'>" +
+
+        "60s" +
+
+        "</strong>" +
+
+        "</div>" +
+
+
+        "<div class='question-box'>" +
+
+        "<h2>💼 Portfolio Challenge</h2>" +
+
+
+        "<p class='question'>" +
+
+        "You have ₹1,00,000 virtual money. " +
+
+        "Which approach gives better diversification?" +
+
+        "</p>" +
+
+
+        "<div class='answer-buttons'>" +
+
+        "<button " +
+
+        "class='bear-button' " +
+
+        "onclick='portfolioAnswer(1)'>" +
+
+        "Invest all in one stock" +
+
+        "</button>" +
+
+
+        "<button " +
+
+        "class='play-button' " +
+
+        "onclick='portfolioAnswer(2)'>" +
+
+        "Spread money across several stocks" +
+
+        "</button>" +
+
+
+        "<button " +
+
+        "class='bear-button' " +
+
+        "onclick='portfolioAnswer(3)'>" +
+
+        "Keep everything in one company" +
+
+        "</button>" +
+
+        "</div>" +
+
+
+        showLifelines() +
+
+
+        "<p " +
+
+        "id='portfolioGameMessage' " +
+
+        "class='score-message'>" +
+
+        "</p>" +
+
+        "</div>";
+
+
+    updateTimerDisplay();
+}
+
+
+function portfolioAnswer(
+    answer
+) {
+
+    clearInterval(
+        gameTimer
+    );
+
+
+    var message =
+        document.getElementById(
+            "portfolioGameMessage"
+        );
+
+
+    if (
+        answer === 2
+    ) {
+
+        message.innerHTML =
+            "✅ Correct! Diversification spreads exposure across different investments.";
+
+        message.style.color =
+            "rgb(20,190,100)";
+
+    }
+
+    else {
+
+        message.innerHTML =
+            "❌ Try again. Think about diversification.";
+
+        message.style.color =
+            "rgb(240,65,75)";
+    }
+}
+
+
+/* =====================================================
+   LOAD SAVED ZIP SCORE
+===================================================== */
+
+var savedZip =
+    Number(
+        localStorage.getItem(
+            "zipBest"
+        )
+    ) || 0;
+
+
+document.getElementById(
+    "zipBest"
+).innerHTML =
+    savedZip;
+
+</script>
+
+
+</body>
+
+</html>

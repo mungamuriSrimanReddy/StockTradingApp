@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Virtual Stock Trading - Sell Stock</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .selling-page {
+
+            min-height:
+                calc(100vh - 72px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+        }
+
+
+        .selling-card {
+
+            width: 480px;
+
+            background:
+                rgb(25, 36, 57);
+
+            border:
+                1px solid rgb(55, 72, 100);
+
+            border-radius: 12px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.3);
+
+        }
+
+
+        .selling-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .back-button {
+
+            background:
+                transparent;
+
+            border:
+                1px solid rgb(70, 90, 120);
+
+            color: white;
+
+            padding: 8px 13px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+
+        .back-button:hover {
+
+            background:
+                rgb(37, 99, 235);
+
+        }
+
+
+        .selling-tag {
+
+            color:
+                rgb(240, 65, 75);
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+        }
+
+
+        .selling-card h1 {
+
+            margin-top: 25px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .selling-symbol {
+
+            color:
+                rgb(130, 150, 180);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .selling-info {
+
+            background:
+                rgb(12, 21, 37);
+
+            padding: 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .info-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .info-row:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .info-label {
+
+            color:
+                rgb(135, 150, 175);
+
+        }
+
+
+        .info-value {
+
+            color: white;
+
+            font-weight: bold;
+
+        }
+
+
+        .selling-input {
+
+            margin-top: 20px;
+
+        }
+
+
+        .selling-input label {
+
+            display: block;
+
+            color:
+                rgb(150, 165, 190);
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .selling-input input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            background:
+                rgb(12, 21, 37);
+
+            border:
+                1px solid rgb(60, 78, 105);
+
+            color: white;
+
+            border-radius: 6px;
+
+            font-size: 16px;
+
+        }
+
+
+        .selling-total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            background:
+                rgb(45, 29, 40);
+
+            border-radius: 8px;
+
+        }
+
+
+        .selling-total strong {
+
+            color:
+                rgb(255, 100, 110);
+
+            font-size: 20px;
+
+        }
+
+
+        .confirm-sell-button {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 14px;
+
+            background:
+                rgb(210, 50, 60);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        .confirm-sell-button:hover {
+
+            background:
+                rgb(175, 35, 45);
+
+        }
+
+
+        .selling-message {
+
+            min-height: 25px;
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+
+    <div class="logo">
+
+        <img
+            src="logo.png"
+            alt="Virtual Stock Trading Logo"
+            style="
+                width:48px;
+                height:48px;
+                object-fit:contain;
+            ">
+
+    </div>
+
+
+    <a href="dashboard.html">
+
+        Dashboard
+
+    </a>
+
+
+    <a
+        href="portfolio.html"
+        class="active">
+
+        Portfolio
+
+    </a>
+
+
+    <a href="tutorials.html">
+
+        Tutorials
+
+    </a>
+
+
+    <a href="competitions.html">
+
+        Competitions
+
+    </a>
+
+
+    <button
+        class="logout"
+        onclick="logout()">
+
+        Logout
+
+    </button>
+
+</div>
+
+
+<!-- ================= SELL PAGE ================= -->
+
+<div class="selling-page">
+
+
+    <div class="selling-card">
+
+
+        <div class="selling-header">
+
+
+            <button
+                class="back-button"
+                onclick="window.location.href='portfolio.html'">
+
+                ← Back
+
+            </button>
+
+
+            <span class="selling-tag">
+
+                SELL STOCK
+
+            </span>
+
+        </div>
+
+
+        <h1 id="sellingCompany">
+            Apple Inc.
+        </h1>
+
+
+        <p
+            id="sellingSymbol"
+            class="selling-symbol">
+
+            AAPL
+
+        </p>
+
+
+        <!-- Stock Information -->
+
+        <div class="selling-info">
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+
+                    Current Price
+
+                </span>
+
+
+                <span
+                    class="info-value"
+                    id="sellingPrice">
+
+                    ₹0.00
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+
+                    Owned Quantity
+
+                </span>
+
+
+                <span
+                    class="info-value"
+                    id="ownedQuantity">
+
+                    0
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+
+                    Available Balance
+
+                </span>
+
+
+                <span
+                    class="info-value"
+                    id="sellingBalance">
+
+                    ₹0.00
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Quantity -->
+
+        <div class="selling-input">
+
+
+            <label>
+
+                Number of Stocks to Sell
+
+            </label>
+
+
+            <input
+                type="number"
+                id="sellingQuantity"
+                min="1"
+                value="1"
+                oninput="calculateSellingTotal()">
+
+        </div>
+
+
+        <!-- Total -->
+
+        <div class="selling-total">
+
+
+            <span>
+
+                Total Amount
+
+            </span>
+
+
+            <strong
+                id="sellingTotal">
+
+                ₹0.00
+
+            </strong>
+
+        </div>
+
+
+        <p
+            id="sellingMessage"
+            class="selling-message">
+        </p>
+
+
+        <button
+            class="confirm-sell-button"
+            onclick="confirmSell()">
+
+            Confirm Sell
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+initializeManagedStocks();
+
+loadSavedPrices();
+
+loadSellingPage();
+
+</script>
+
+
+</body>
+
+</html>

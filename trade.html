@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Virtual Stock Trading - Trade</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+   <div class="logo">
+    <img src="logo.png" alt="Virtual Stock Trading Logo">
+</div>
+
+    <a href="dashboard.html">
+        Dashboard
+    </a>
+
+    <a href="portfolio.html">
+        Portfolio
+    </a>
+
+    <a href="tutorials.html">
+        Tutorials
+    </a>
+
+    <a href="competitions.html">
+        Competitions
+    </a>
+
+    <button
+        class="logout"
+        onclick="logout()">
+
+        Logout
+
+    </button>
+
+</div>
+
+
+<!-- ================= TRADE PAGE ================= -->
+
+<div class="trade-page">
+
+
+    <div class="trade-card">
+
+
+        <div class="trade-header">
+
+            <button
+                class="back-button"
+                onclick="window.location.href='dashboard.html'">
+
+                ← Back
+
+            </button>
+
+
+            <p>
+                SIMULATED TRADING
+            </p>
+
+        </div>
+
+
+        <h1 id="tradeCompany">
+            Apple Inc.
+        </h1>
+
+
+        <div class="trade-symbol"
+             id="tradeSymbol">
+
+            AAPL
+
+        </div>
+
+
+        <div class="trade-price">
+
+            <span>
+                Current Price
+            </span>
+
+            <strong id="tradePrice">
+                ₹170.50
+            </strong>
+
+        </div>
+
+
+        <div class="trade-balance">
+
+            Available Balance:
+
+            <strong id="tradeBalance">
+                ₹1,00,000
+            </strong>
+
+        </div>
+
+
+        <!-- Quantity -->
+
+        <div class="trade-input">
+
+            <label>
+                Number of Stocks
+            </label>
+
+            <input
+                type="number"
+                id="tradeQuantity"
+                min="1"
+                value="1"
+                oninput="calculateTradeTotal()">
+
+        </div>
+
+
+        <!-- Total -->
+
+        <div class="trade-total">
+
+            <span>
+                Total Amount
+            </span>
+
+            <strong id="tradeTotal">
+                ₹170.50
+            </strong>
+
+        </div>
+
+
+        <p
+            id="tradeMessage"
+            class="trade-message">
+        </p>
+
+
+        <button
+            class="buy-now-button"
+            onclick="buySelectedStock()">
+
+            Buy Stock
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+initializeManagedStocks();
+
+loadSavedPrices();
+
+loadTradePage();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Virtual Stock Trading - Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================= SELL BUTTON ================= */
+
+        .portfolio-sell-button {
+
+            background:
+                rgb(210, 50, 60);
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 18px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+        }
+
+
+        .portfolio-sell-button:hover {
+
+            background:
+                rgb(175, 35, 45);
+
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .logo img {
+
+            width: 48px;
+
+            height: 48px;
+
+            object-fit: contain;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+    <div class="logo">
+
+        <img
+            src="logo.png"
+            alt="Virtual Stock Trading Logo">
+
+    </div>
+
+
+    <a href="dashboard.html">
+
+        Dashboard
+
+    </a>
+
+
+    <a
+        href="portfolio.html"
+        class="active">
+
+        Portfolio
+
+    </a>
+
+
+    <a href="tutorials.html">
+
+        Tutorials
+
+    </a>
+
+
+    <a href="competitions.html">
+
+        Competitions
+
+    </a>
+
+
+    <button
+        class="logout"
+        onclick="logout()">
+
+        Logout
+
+    </button>
+
+</div>
+
+
+<!-- ================= PORTFOLIO ================= -->
+
+<div class="portfolio-page">
+
+
+    <div class="portfolio-header">
+
+        <h1>
+            My Portfolio
+        </h1>
+
+
+        <p>
+            Track your virtual investments and performance.
+        </p>
+
+    </div>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="portfolio-summary">
+
+
+        <div class="portfolio-summary-card">
+
+            <span>
+                Available Balance
+            </span>
+
+
+            <strong id="portfolioBalance">
+                ₹1,00,000
+            </strong>
+
+        </div>
+
+
+        <div class="portfolio-summary-card">
+
+            <span>
+                Total Invested
+            </span>
+
+
+            <strong id="invested">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="portfolio-summary-card">
+
+            <span>
+                Current Portfolio Value
+            </span>
+
+
+            <strong id="portfolioValue">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="portfolio-summary-card">
+
+            <span>
+                Number of Stocks
+            </span>
+
+
+            <strong id="stockCount">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PORTFOLIO GRAPH ================= -->
+
+    <div class="portfolio-chart-section">
+
+
+        <div class="chart-header">
+
+            <div>
+
+                <h2>
+                    Portfolio Performance
+                </h2>
+
+
+                <p>
+                    Simulated portfolio value over time
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stock-chart-container">
+
+            <canvas
+                id="portfolioGraph"
+                width="1000"
+                height="400">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= HOLDINGS ================= -->
+
+    <div class="portfolio-table-section">
+
+
+        <h2>
+            Your Holdings
+        </h2>
+
+
+        <p
+            id="emptyMessage"
+            class="empty-message">
+        </p>
+
+
+        <div class="table-container">
+
+            <table class="portfolio-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Symbol
+                        </th>
+
+
+                        <th>
+                            Company
+                        </th>
+
+
+                        <th>
+                            Buy Price
+                        </th>
+
+
+                        <th>
+                            Current Price
+                        </th>
+
+
+                        <th>
+                            Total Invested
+                        </th>
+
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="portfolioTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <p
+            id="sellMessage"
+            class="trade-message">
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+initializeManagedStocks();
+
+loadSavedPrices();
+
+showPortfolio();
+
+drawPortfolioGraph();
+
+startStockSimulation();
+
+</script>
+
+
+</body>
+
+</html>

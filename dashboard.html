@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Virtual Stock Trading - Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+<div class="logo">
+    <img src="logo.png" alt="Virtual Stock Trading Logo">
+</div>
+
+    <a href="dashboard.html" class="active">
+        Dashboard
+    </a>
+
+    <a href="portfolio.html">
+        Portfolio
+    </a>
+
+    <a href="tutorials.html">
+        Tutorials
+    </a>
+
+    <a href="competitions.html">
+        Competitions
+    </a>
+
+    <button
+        class="logout"
+        onclick="logout()">
+
+        Logout
+
+    </button>
+
+</div>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<div class="dashboard">
+
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <h1>
+                Welcome back, Investor!
+            </h1>
+
+            <p class="subtitle">
+                Market is currently OPEN.
+            </p>
+
+        </div>
+
+
+        <div class="balance-box">
+
+            <h3>
+                Virtual Purchasing Power
+            </h3>
+
+            <p id="balance">
+                ₹1,00,000
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MARKET WATCHLIST ================= -->
+
+    <div class="market-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <h2>
+                    Live Market Watchlist
+                </h2>
+
+                <p>
+                    Simulated stock prices for educational purposes.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table class="market-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Symbol
+                        </th>
+
+                        <th>
+                            Company
+                        </th>
+
+                        <th>
+                            Price
+                        </th>
+
+                        <th>
+                            Change
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="marketTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MARKET GRAPH ================= -->
+
+    <div class="market-chart-section">
+
+        <div class="chart-header">
+
+            <div>
+
+                <h2>
+                    Market Performance
+                </h2>
+
+                <p id="chartStockName">
+                    Apple Inc. (AAPL)
+                </p>
+
+            </div>
+
+
+            <select
+                id="chartStockSelector"
+                onchange="changeChartStock()">
+
+            </select>
+
+        </div>
+
+
+        <div class="market-price-info">
+
+            <div>
+
+                <span>
+                    Current Price
+                </span>
+
+                <strong id="chartCurrentPrice">
+                    ₹170.50
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Change
+                </span>
+
+                <strong id="chartCurrentChange">
+                    +0.00%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stock-chart-container">
+
+            <canvas
+                id="marketChart"
+                width="1000"
+                height="400">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= QUICK ACTIONS ================= -->
+
+    <div class="dashboard-actions">
+
+        <a href="portfolio.html">
+            View Portfolio
+        </a>
+
+
+        <a href="tutorials.html">
+            Learn Trading
+        </a>
+
+
+        <a href="competitions.html">
+            Join Competition
+        </a>
+
+
+        <button
+            onclick="resetBalance()">
+
+            Start Again
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+initializeManagedStocks();
+
+loadSavedPrices();
+
+loadMarketTable();
+
+loadChartSelector();
+
+showBalance();
+
+startStockSimulation();
+
+</script>
+
+
+</body>
+
+</html>

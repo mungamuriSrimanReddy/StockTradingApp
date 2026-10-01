@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Virtual Stock Trading - Login</title>
+
+    <style>
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgb(136, 10, 194),
+                    rgb(65, 20, 100)
+                );
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .login-container {
+
+            width: 400px;
+
+            background-color: white;
+
+            border-radius: 15px;
+
+            padding: 35px;
+
+            box-sizing: border-box;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .login-container h1 {
+
+            color: rgb(136, 10, 194);
+
+            margin-bottom: 10px;
+        }
+
+
+        .login-container p {
+
+            color: gray;
+
+            margin-bottom: 25px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            border: 1px solid black;
+
+            border-radius: 6px;
+
+            box-sizing: border-box;
+
+            font-size: 15px;
+        }
+
+
+        button {
+
+            width: 150px;
+
+            padding: 12px;
+
+            margin-top: 25px;
+
+            background-color:
+                rgb(114, 10, 205);
+
+            color: white;
+
+            border: 1px solid black;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+
+        button:hover {
+
+            background-color:
+                rgb(100, 5, 180);
+        }
+
+
+        .error {
+
+            display: block;
+
+            color: red;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+
+
+        .register-link {
+
+            display: block;
+
+            margin-top: 20px;
+
+            text-decoration: none;
+
+            color: rgb(136, 10, 194);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+    <h1>
+        Virtual Stock Trading
+    </h1>
+
+
+    <p>
+        Login to your account
+    </p>
+
+
+    <input
+        type="text"
+        id="loginUser"
+        placeholder="Enter Name or Email">
+
+
+    <input
+        type="password"
+        id="loginPassword"
+        placeholder="Enter Password">
+
+
+    <span
+        id="loginError"
+        class="error">
+    </span>
+
+
+    <button
+        type="button"
+        onclick="loginUser()">
+
+        Login
+
+    </button>
+
+
+    <a
+        href="Registration%20page.html"
+        class="register-link">
+
+        Create New Account
+
+    </a>
+
+</div>
+
+
+<script>
+
+function loginUser() {
+
+    var loginUser =
+        document.getElementById("loginUser").value.trim();
+
+    var loginPassword =
+        document.getElementById("loginPassword").value;
+
+    var loginError =
+        document.getElementById("loginError");
+
+
+    loginError.innerHTML = "";
+
+
+    if (
+        loginUser === "" ||
+        loginPassword === ""
+    ) {
+
+        loginError.innerHTML =
+            "Enter name/email and password.";
+
+        return;
+    }
+
+
+    /* Get all registered accounts */
+
+    var users =
+        JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
+
+
+    if (users.length === 0) {
+
+        loginError.innerHTML =
+            "No registered account found. Please register first.";
+
+        return;
+    }
+
+
+    /* Search account */
+
+    var foundUser =
+        users.find(function(user) {
+
+            return (
+                (
+                    user.username === loginUser ||
+                    user.email === loginUser
+                )
+                &&
+                user.password === loginPassword
+            );
+
+        });
+
+
+    /* Login successful */
+
+    if (foundUser) {
+
+        localStorage.setItem(
+            "loggedIn",
+            "true"
+        );
+
+
+        /* Store currently logged-in user */
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(foundUser)
+        );
+
+
+        window.location.href =
+            "dashboard.html";
+
+    }
+
+    else {
+
+        loginError.innerHTML =
+            "Invalid name/email or password.";
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

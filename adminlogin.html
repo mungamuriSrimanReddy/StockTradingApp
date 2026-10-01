@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Virtual Stock Trading - Admin Login</title>
+
+    <style>
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgb(136, 10, 194),
+                    rgb(65, 20, 100)
+                );
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .login-container {
+
+            width: 400px;
+
+            background-color: white;
+
+            border-radius: 15px;
+
+            padding: 35px;
+
+            box-sizing: border-box;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.3);
+        }
+
+
+        h1 {
+
+            color:
+                rgb(136, 10, 194);
+
+            margin-bottom: 10px;
+        }
+
+
+        p {
+
+            color: gray;
+
+            margin-bottom: 25px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            border: 1px solid black;
+
+            border-radius: 6px;
+
+            box-sizing: border-box;
+
+            font-size: 15px;
+        }
+
+
+        button {
+
+            width: 150px;
+
+            padding: 12px;
+
+            margin-top: 25px;
+
+            background-color:
+                rgb(114, 10, 205);
+
+            color: white;
+
+            border: 1px solid black;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+
+        button:hover {
+
+            background-color:
+                rgb(100, 5, 180);
+        }
+
+
+        .error {
+
+            display: block;
+
+            color: red;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+
+
+        .back-link {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color:
+                rgb(136, 10, 194);
+
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+    <h1>
+        Admin Login
+    </h1>
+
+    <p>
+        Login to Admin Dashboard
+    </p>
+
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Enter Username">
+
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Enter Password">
+
+
+    <span
+        id="error"
+        class="error">
+    </span>
+
+
+    <button
+        type="button"
+        onclick="adminLogin()">
+
+        Login
+
+    </button>
+
+
+    <a
+        href="Registration%20page.html"
+        class="back-link">
+
+        Back to Registration
+
+    </a>
+
+</div>
+
+
+<script>
+
+function adminLogin() {
+
+    var username =
+        document.getElementById(
+            "username"
+        ).value.trim();
+
+
+    var password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    var error =
+        document.getElementById(
+            "error"
+        );
+
+
+    error.innerHTML = "";
+
+
+    /* Get Admin credentials */
+
+    var savedAdmin =
+        localStorage.getItem(
+            "adminDetails"
+        );
+
+
+    if (savedAdmin === null) {
+
+        error.innerHTML =
+            "Admin credentials not found.";
+
+        return;
+    }
+
+
+    var admin =
+        JSON.parse(savedAdmin);
+
+
+    /* Check credentials */
+
+    if (
+        username === admin.username &&
+        password === admin.password
+    ) {
+
+        localStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+
+        window.location.href =
+            "admindashboard.html";
+
+    }
+
+    else {
+
+        error.innerHTML =
+            "Invalid admin username or password.";
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

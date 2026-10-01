@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Virtual Stock Trading</title>
+
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            color: rgb(35, 30, 55);
+
+            background-color: rgb(248, 246, 252);
+
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 75px;
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background-color: white;
+
+            box-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .logo {
+
+            width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .logo img {
+
+            width: 52px;
+
+            height: 52px;
+
+            object-fit: contain;
+
+            display: block;
+
+        }
+
+
+        .logo-section h2 {
+
+            font-size: 20px;
+
+            color: rgb(45, 28, 70);
+
+        }
+
+
+        /* ================= NAVIGATION LINKS ================= */
+
+        .nav-links {
+
+            display: flex;
+
+            list-style: none;
+
+            gap: 35px;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: rgb(80, 70, 95);
+
+            font-size: 15px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: rgb(136, 10, 194);
+
+        }
+
+
+        /* ================= NAV BUTTONS ================= */
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 12px;
+
+        }
+
+
+        .nav-buttons button {
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+        }
+
+
+        .login-btn {
+
+            background-color: white;
+
+            border: 1px solid rgb(136, 10, 194);
+
+            color: rgb(136, 10, 194);
+
+        }
+
+
+        .signup-btn {
+
+            background-color:
+                rgb(136, 10, 194);
+
+            border: 1px solid
+                rgb(136, 10, 194);
+
+            color: white;
+
+        }
+
+
+        .login-btn:hover {
+
+            background-color:
+                rgb(248, 240, 252);
+
+        }
+
+
+        .signup-btn:hover {
+
+            background-color:
+                rgb(105, 7, 150);
+
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+
+            min-height: 620px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 70px 8%;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgb(247, 241, 252),
+                    white
+                );
+
+        }
+
+
+        .hero-content {
+
+            width: 50%;
+
+        }
+
+
+        .small-heading {
+
+            color: rgb(136, 10, 194);
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .hero h1 {
+
+            font-size: 55px;
+
+            line-height: 1.1;
+
+            color: rgb(45, 28, 70);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .hero h1 span {
+
+            color: rgb(136, 10, 194);
+
+        }
+
+
+        .hero-text {
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: rgb(105, 95, 120);
+
+            max-width: 570px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* ================= HERO BUTTONS ================= */
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+        }
+
+
+        .hero-buttons button {
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        .get-started {
+
+            border: none;
+
+            background-color:
+                rgb(136, 10, 194);
+
+            color: white;
+
+        }
+
+
+        .learn-more {
+
+            background-color: white;
+
+            border: 1px solid
+                rgb(136, 10, 194);
+
+            color:
+                rgb(136, 10, 194);
+
+        }
+
+
+        .get-started:hover {
+
+            background-color:
+                rgb(105, 7, 150);
+
+        }
+
+
+        .learn-more:hover {
+
+            background-color:
+                rgb(248, 240, 252);
+
+        }
+
+
+        /* ================= HERO IMAGE ================= */
+
+        .hero-image {
+
+            width: 45%;
+
+            display: flex;
+
+            justify-content: center;
+
+        }
+
+
+        .hero-image img {
+
+            width: 100%;
+
+            max-width: 550px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(60, 20, 80, 0.15);
+
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .features {
+
+            padding: 90px 8%;
+
+            background-color: white;
+
+        }
+
+
+        .section-heading {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+
+        }
+
+
+        .section-heading p,
+        .section-label {
+
+            color:
+                rgb(136, 10, 194);
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 35px;
+
+            color:
+                rgb(45, 28, 70);
+
+        }
+
+
+        /* ================= FEATURE CARDS ================= */
+
+        .feature-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .feature-card {
+
+            padding: 30px 25px;
+
+            border-radius: 15px;
+
+            background-color:
+                rgb(250, 246, 252);
+
+            text-align: center;
+
+            border:
+                1px solid rgb(235, 220, 242);
+
+            transition: 0.3s;
+
+        }
+
+
+        .feature-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .feature-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .feature-card h3 {
+
+            margin-bottom: 12px;
+
+            color:
+                rgb(45, 28, 70);
+
+        }
+
+
+        .feature-card p {
+
+            color:
+                rgb(110, 100, 125);
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ================= ABOUT ================= */
+
+        .about {
+
+            padding: 100px 15%;
+
+            text-align: center;
+
+            background-color:
+                rgb(246, 239, 250);
+
+        }
+
+
+        .about-content {
+
+            max-width: 850px;
+
+            margin: auto;
+
+        }
+
+
+        .about h2 {
+
+            font-size: 38px;
+
+            margin-bottom: 25px;
+
+            color:
+                rgb(45, 28, 70);
+
+        }
+
+
+        .about p:not(.section-label) {
+
+            color:
+                rgb(100, 90, 115);
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* ================= GET STARTED ================= */
+
+        .contact {
+
+            padding: 90px 10%;
+
+            text-align: center;
+
+            background-color: white;
+
+        }
+
+
+        .contact h2 {
+
+            font-size: 38px;
+
+            margin-bottom: 15px;
+
+            color:
+                rgb(45, 28, 70);
+
+        }
+
+
+        .contact > p:not(.section-label) {
+
+            color:
+                rgb(100, 90, 115);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .contact-btn {
+
+            padding: 14px 30px;
+
+            background-color:
+                rgb(136, 10, 194);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        .contact-btn:hover {
+
+            background-color:
+                rgb(105, 7, 150);
+
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            padding: 30px;
+
+            text-align: center;
+
+            background-color:
+                rgb(45, 28, 70);
+
+            color: white;
+
+        }
+
+
+        .footer-logo {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .footer-logo img {
+
+            width: 35px;
+
+            height: 35px;
+
+            object-fit: contain;
+
+        }
+
+
+        footer p {
+
+            color:
+                rgb(205, 195, 215);
+
+            font-size: 13px;
+
+            margin: 5px;
+
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+
+            .hero {
+
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 40px;
+
+            }
+
+
+            .hero-content {
+
+                width: 100%;
+
+            }
+
+
+            .hero-image {
+
+                width: 90%;
+
+            }
+
+
+            .hero-buttons {
+
+                justify-content: center;
+
+            }
+
+
+            .feature-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 4%;
+
+            }
+
+
+            .logo-section h2 {
+
+                font-size: 16px;
+
+            }
+
+
+            .logo {
+
+                width: 44px;
+
+                height: 44px;
+
+            }
+
+
+            .logo img {
+
+                width: 44px;
+
+                height: 44px;
+
+            }
+
+
+            .nav-buttons {
+
+                gap: 5px;
+
+            }
+
+
+            .nav-buttons button {
+
+                padding: 8px 12px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .feature-container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+
+    <div class="logo-section">
+
+
+        <div class="logo">
+
+            <img
+                src="logo.png"
+                alt="Virtual Stock Trading Logo">
+
+        </div>
+
+
+        <h2>
+
+            Virtual Stock Trading
+
+        </h2>
+
+    </div>
+
+
+    <ul class="nav-links">
+
+
+        <li>
+
+            <a href="#home">
+
+                Home
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="#about">
+
+                About
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="#contact">
+
+                Contact
+
+            </a>
+
+        </li>
+
+    </ul>
+
+
+    <div class="nav-buttons">
+
+
+        <button
+            class="login-btn"
+            onclick="window.location.href='loginpage.html'">
+
+            Login
+
+        </button>
+
+
+        <button
+            class="signup-btn"
+            onclick="window.location.href='Registration%20page.html'">
+
+            Sign Up
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section
+    class="hero"
+    id="home">
+
+
+    <div class="hero-content">
+
+
+        <p class="small-heading">
+
+            SMART VIRTUAL TRADING
+
+        </p>
+
+
+        <h1>
+
+            Practice Trading.
+
+            <br>
+
+            <span>
+                Build Your Strategy.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-text">
+
+            Learn stock trading with virtual money.
+            Buy and sell simulated stocks, monitor your
+            portfolio, understand price movements, and
+            improve your trading skills without real
+            financial risk.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+            <button
+                class="get-started"
+                onclick="window.location.href='Registration%20page.html'">
+
+                Get Started
+
+            </button>
+
+
+            <button
+                class="learn-more"
+                onclick="document.getElementById('about').scrollIntoView()">
+
+                Learn More
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="home image.png"
+            alt="Virtual Stock Trading">
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section
+    class="about"
+    id="about">
+
+
+    <div class="about-content">
+
+
+        <p class="section-label">
+
+            ABOUT VIRTUAL STOCK TRADING
+
+        </p>
+
+
+        <h2>
+
+            Learn Trading Through Practice
+
+        </h2>
+
+
+        <p>
+
+            Virtual Stock Trading is a frontend educational
+            application designed to help beginners understand
+            the basic process of buying, monitoring and selling
+            stocks using virtual money.
+
+        </p>
+
+
+        <p>
+
+            Users can explore simulated stock prices, purchase
+            stocks, monitor their portfolio, learn trading
+            concepts through tutorials, and participate in
+            mock trading competitions.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+
+    <div class="section-heading">
+
+
+        <p>
+
+            WHAT WE OFFER
+
+        </p>
+
+
+        <h2>
+
+            Everything You Need to Learn Trading
+
+        </h2>
+
+    </div>
+
+
+    <div class="feature-container">
+
+
+        <!-- Feature 1 -->
+
+        <div class="feature-card">
+
+
+            <div class="feature-icon">
+
+                💰
+
+            </div>
+
+
+            <h3>
+
+                Virtual Trading
+
+            </h3>
+
+
+            <p>
+
+                Start with virtual money and practice
+                buying and selling stocks without
+                using real money.
+
+            </p>
+
+        </div>
+
+
+        <!-- Feature 2 -->
+
+        <div class="feature-card">
+
+
+            <div class="feature-icon">
+
+                📈
+
+            </div>
+
+
+            <h3>
+
+                Stock Prices
+
+            </h3>
+
+
+            <p>
+
+                View simulated stock prices and
+                observe how prices change over time.
+
+            </p>
+
+        </div>
+
+
+        <!-- Feature 3 -->
+
+        <div class="feature-card">
+
+
+            <div class="feature-icon">
+
+                💼
+
+            </div>
+
+
+            <h3>
+
+                Portfolio Tracking
+
+            </h3>
+
+
+            <p>
+
+                Monitor your purchased stocks,
+                quantities, investment and current
+                portfolio information.
+
+            </p>
+
+        </div>
+
+
+        <!-- Feature 4 -->
+
+        <div class="feature-card">
+
+
+            <div class="feature-icon">
+
+                🏆
+
+            </div>
+
+
+            <h3>
+
+                Trading Competitions
+
+            </h3>
+
+
+            <p>
+
+                Join mock trading competitions and
+                compare your simulated portfolio with
+                sample traders.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GET STARTED ================= -->
+
+<section
+    class="contact"
+    id="contact">
+
+
+    <p class="section-label">
+
+        GET STARTED
+
+    </p>
+
+
+    <h2>
+
+        Start Your Virtual Trading Journey
+
+    </h2>
+
+
+    <p>
+
+        Create an account and begin learning stock
+        trading with virtual money.
+
+    </p>
+
+
+    <button
+        class="contact-btn"
+        onclick="window.location.href='Registration%20page.html'">
+
+        Create Your Account
+
+    </button>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+    <div class="footer-logo">
+
+        <img
+            src="logo.png"
+            alt="Virtual Stock Trading Logo">
+
+
+        <span>
+            Virtual Stock Trading
+        </span>
+
+    </div>
+
+
+    <p>
+
+        Learn • Practice • Trade
+
+    </p>
+
+
+    <p>
+
+        © 2026 Virtual Stock Trading.
+        All Rights Reserved.
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
